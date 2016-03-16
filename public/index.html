@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sanitize.css/2.0.0/sanitize.min.css">
+    <style>
+        html, body{
+            height: 100%;
+        }
+        main{
+            display: flex;
+            height: 100%;
+        }
+        .listPane{
+            flex:1;
+            padding: 1rem;
+        }
+        .formPane{
+            width: 300px;
+            padding: 1rem;
+        }
+        .formInput{
+            width: 100%;
+            line-height: 1rem;
+            box-sizing: border-box;
+        }
+        .formTextArea{
+            width: 100%;
+            min-height: 10rem;
+            box-sizing: border-box;
+        }
+        .ticket:hover{
+            background: #EEE;;
+        }
+        .tickets{
+            position:relative;
+        }
+        .ticket{
+            line-height: 2rem;
+            border-bottom: 1px solid #999;
+            cursor: pointer;
+            text-overflow: ellipsis;            
+        }
+        .ticket__title {
+            white-space:nowrap;
+            width:100%;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display: inline-block
+        }       
+        
+        header{
+            line-height: 3rem;
+            background: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        Tasken
+    </header>
+    <main>
+        <div class="listPane">
+            <button @click="clearForm">新規作成</button>
+            <div class="tickets">
+                <div class="ticket" v-for="ticket in tickets" @click="edit(ticket)">
+                    #{{ticket.No}}
+                    {{ticket.種別}}
+                    {{ticket.内容}}
+                </div>
+            </div>
+            
+        </div>
+        <div class="formPane">
+            <p>
+            <div v-show="formNo!==''" >
+                No.<br>
+                <input v-show="formNo!==''"  class="formInput" type="text" v-model="formNo"><br>
+            </div>
+            種別<br>
+            <select v-model="formTitle">
+                <option selected>タスク</option>
+                <option>質問</option>
+                <option>課題</option>
+                <option>バグ</option>
+            </select><br>
+            内容<br>
+            <textarea class="formTextArea" v-model="formContent"></textarea><br>
+            作成者<br>
+            <input class="formInput" type="text" v-model="formCreateUser"><br>
+            作成日<br>
+            <input class="formInput" type="text" v-model="formCreateDate"><br>
+            回答<br>
+            <textarea class="formTextArea" v-model="formReply"></textarea><br>
+            回答者<br>
+            <input class="formInput" type="text" v-model="formReplyUser"><br>
+            回答日<br>
+            <input class="formInput" type="text" v-model="formReplyDate"><br>
+            終了<br>
+            <select v-model="formDone">
+                <option selected></option>
+                <option>終了</option>
+                <option>保留</option>
+            </select><br>
+            関連No<br>
+            <input class="formInput" type="text" v-model="formRelated">
+            </p>
+            <p>
+                <button v-show="formNo===''" @click="create">新規作成</button>
+                <button v-show="formNo!==''" @click="update">更新</button>
+            </p>
+        </div>
+    </main>
+	<script src="bundle.js"></script>
+</body>
+</html>

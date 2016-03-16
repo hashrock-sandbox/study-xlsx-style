@@ -4,11 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:js": "browserify client/client.js > public/bundle.js",
+    "dev": "parallelshell 'npm run watch:js'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "watchify client/client.js -o public/bundle.js -dv"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.13.3",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "feathers": "^2.0.0",
+    "feathers-rest": "^1.2.4",
+    "morgan": "~1.6.1",
     "xlsx-style": "^0.8.7"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "parallelshell": "^2.0.0",
+    "superagent": "^1.8.1",
+    "vue": "^1.0.17",
+    "watchify": "^3.7.0"
   }
 }
