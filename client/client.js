@@ -18,7 +18,7 @@ function j2e(item) {
 }
 
 new Vue({
-    el: "main",
+    el: "body",
     data: {
         tickets: [],
         formTitle: "",

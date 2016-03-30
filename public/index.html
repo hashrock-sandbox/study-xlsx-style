@@ -15,7 +15,7 @@
         }
         .listPane{
             flex:1;
-            padding: 1rem;
+            padding: 0 1rem;
         }
         .formPane{
             width: 300px;
@@ -59,7 +59,7 @@
 <body>
     <div class="ui pointing menu">
     <a class="active item">
-        すべて表示
+        すべて表示 <div class="ui label">{{tickets.length}}</div>
     </a>
     <a class="item">
         タスク
@@ -79,7 +79,7 @@
 
     <main>
         <div class="listPane">
-            <button class="ui button" @click="clearForm">新規作成</button>
+            <button class="ui blue button" @click="clearForm">新しいチケットを作成</button>
             <div class="ui relaxed divided list tickets">
                 <div class="item ticket" v-for="ticket in tickets" @click="edit(ticket)">
                     <i v-if="ticket.種別 === '質問'" class="help icon"></i>
@@ -95,17 +95,21 @@
             
         </div>
         <div class="formPane ui form">
+            <button class="ui basic green button" v-show="formNo===''" @click="create">保存</button>
+            <button class="ui basic green button" v-show="formNo!==''" @click="update">保存</button>
+            <button class="ui basic red button" v-show="formNo!==''" @click="remove">削除</button>
+            
             <p>
-            <div v-show="formNo!==''" >
-                No. {{formNo}}
-            </div>
+                <div v-show="formNo!==''" >
+                    No. {{formNo}}
+                </div>
+            </p>
             <select v-model="formTitle">
                 <option selected>タスク</option>
                 <option>質問</option>
                 <option>課題</option>
                 <option>バグ</option>
             </select><br>
-            内容<br>
             <textarea class="formTextArea" v-model="formContent"></textarea><br>
             作成者<br>
             <input class="formInput" type="text" v-model="formCreateUser"><br>
@@ -125,11 +129,6 @@
             </select><br>
             関連No<br>
             <input class="formInput" type="text" v-model="formRelated">
-            </p>
-            <p>
-                <button v-show="formNo===''" @click="create">新規作成</button>
-                <button v-show="formNo!==''" @click="update">更新</button>
-            </p>
         </div>
     </main>
 	<script src="bundle.js"></script>
