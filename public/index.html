@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sanitize.css/2.0.0/sanitize.min.css">
+    <link rel="stylesheet" href="./semantic.min.css">
     <style>
         html, body{
             height: 100%;
@@ -18,7 +19,7 @@
         }
         .formPane{
             width: 300px;
-            padding: 1rem;
+            padding: 0 1rem;
         }
         .formInput{
             width: 100%;
@@ -37,10 +38,7 @@
             position:relative;
         }
         .ticket{
-            line-height: 2rem;
-            border-bottom: 1px solid #999;
             cursor: pointer;
-            text-overflow: ellipsis;            
         }
         .ticket__title {
             white-space:nowrap;
@@ -59,28 +57,48 @@
     </style>
 </head>
 <body>
-    <header>
-        Tasken
-    </header>
+    <div class="ui pointing menu">
+    <a class="active item">
+        すべて表示
+    </a>
+    <a class="item">
+        タスク
+    </a>
+    <a class="item">
+        バグ
+    </a>
+    <div class="right menu">
+        <div class="item">
+        <div class="ui transparent icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <main>
         <div class="listPane">
-            <button @click="clearForm">新規作成</button>
-            <div class="tickets">
-                <div class="ticket" v-for="ticket in tickets" @click="edit(ticket)">
-                    #{{ticket.No}}
-                    {{ticket.種別}}
-                    {{ticket.内容}}
+            <button class="ui button" @click="clearForm">新規作成</button>
+            <div class="ui relaxed divided list tickets">
+                <div class="item ticket" v-for="ticket in tickets" @click="edit(ticket)">
+                    <i v-if="ticket.種別 === '質問'" class="help icon"></i>
+                    <i v-if="ticket.種別 === '課題'" class="info icon"></i>
+                    <i v-if="ticket.種別 === 'バグ'" class="bug icon"></i>
+                    <i v-if="ticket.種別 === 'タスク'" class="square outline icon"></i>
+                    <div class="content">
+                        {{ticket.内容}}
+                        #{{ticket.No}}
+                    </div>
                 </div>
             </div>
             
         </div>
-        <div class="formPane">
+        <div class="formPane ui form">
             <p>
             <div v-show="formNo!==''" >
-                No.<br>
-                <input v-show="formNo!==''"  class="formInput" type="text" v-model="formNo"><br>
+                No. {{formNo}}
             </div>
-            種別<br>
             <select v-model="formTitle">
                 <option selected>タスク</option>
                 <option>質問</option>
