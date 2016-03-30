@@ -8,3 +8,10 @@ XLSでredmine風のことやる
 json to 障害管理票 to json
 
 ![screenshot](screenshot.png)
+
+
+# TODO
+
+ * チケットの削除
+ * なんか編集がバグっている
+ * 単にxlsをDBにするのではなく、xlsのインポート・エクスポートというふうにしないと面倒か？
