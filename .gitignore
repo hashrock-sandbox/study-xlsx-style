@@ -34,6 +34,7 @@ jspm_packages
 .node_repl_history
 public/bundle.js
 out.xlsx
+db.json
 
 .DS_Store
 
