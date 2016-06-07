@@ -46,7 +46,7 @@ new Vue({
             this.formReplyDate = ticket["回答日"];
             this.formDone = ticket["終了"];
             this.formRelated = ticket["関連No"];
-            this.formNo = ticket["No"]
+            this.formNo = ticket["id"]
         },
         find: function(){
             var self = this;            
