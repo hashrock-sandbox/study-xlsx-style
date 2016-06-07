@@ -36,3 +36,5 @@ public/bundle.js
 out.xlsx
 
 .DS_Store
+
+.vscode/
