@@ -5,6 +5,11 @@ XLSでredmine風のことやる
 
 とりあえず簡単なエディタから実装。
 
+
+![screenshot](screenshot2.png)
+
+
+
 json to 障害管理票 to json
 
 ![screenshot](screenshot.png)
